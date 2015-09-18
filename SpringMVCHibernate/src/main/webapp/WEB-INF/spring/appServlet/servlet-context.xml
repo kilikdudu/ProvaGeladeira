@@ -40,7 +40,14 @@
 		<beans:property name="dataSource" ref="dataSource" />
 		<beans:property name="annotatedClasses">
 			<beans:list>
-				<beans:value>com.journaldev.spring.model.Person</beans:value>
+				<beans:value>br.com.carloseduardo.spring.model.Usuario</beans:value>
+				<beans:value>br.com.carloseduardo.spring.model.Compra</beans:value>
+				<beans:value>br.com.carloseduardo.spring.model.Produto</beans:value>
+				<beans:value>br.com.carloseduardo.spring.model.ProdutoCompra</beans:value>
+				<beans:value>br.com.carloseduardo.spring.model.Tipo</beans:value>
+				<beans:value>br.com.carloseduardo.spring.model.Marca</beans:value>
+				<beans:value>br.com.carloseduardo.spring.model.Geladeira</beans:value>
+				<beans:value>br.com.carloseduardo.spring.model.UsuarioGeladeira</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -52,13 +59,49 @@
 		</beans:property>
 	</beans:bean>
 	
-	<beans:bean id="personDAO" class="com.journaldev.spring.dao.PersonDAOImpl">
+	<!-- Serviços  -->
+	<beans:bean id="produtoDAO" class="br.com.carloseduardo.spring.dao.ProdutoDAOImpl">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
-	<beans:bean id="personService" class="com.journaldev.spring.service.PersonServiceImpl">
-		<beans:property name="personDAO" ref="personDAO"></beans:property>
+	<beans:bean id="produtoService" class="br.com.carloseduardo.spring.service.ProdutoServiceImpl">
+		<beans:property name="produtoDAO" ref="produtoDAO"></beans:property>
 	</beans:bean>
-	<context:component-scan base-package="com.journaldev.spring" />
+	
+	<beans:bean id="tipoDAO" class="br.com.carloseduardo.spring.dao.TipoDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="tipoService" class="br.com.carloseduardo.spring.service.TipoServiceImpl">
+		<beans:property name="tipoDAO" ref="tipoDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="marcaDAO" class="br.com.carloseduardo.spring.dao.MarcaDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="marcaService" class="br.com.carloseduardo.spring.service.MarcaServiceImpl">
+		<beans:property name="marcaDAO" ref="marcaDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="compraDAO" class="br.com.carloseduardo.spring.dao.CompraDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="compraService" class="br.com.carloseduardo.spring.service.CompraServiceImpl">
+		<beans:property name="compraDAO" ref="compraDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="usuarioDAO" class="br.com.carloseduardo.spring.dao.UsuarioDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="geladeiraDAO" class="br.com.carloseduardo.spring.dao.GeladeiraDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="usuariogeladeiraDAO" class="br.com.carloseduardo.spring.dao.UsuarioGeladeiraDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<!-- Fim Serviços  -->
+	
+	<context:component-scan base-package="br.com.carloseduardo.spring" />
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
