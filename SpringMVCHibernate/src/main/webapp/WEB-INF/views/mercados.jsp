@@ -4,7 +4,7 @@
 <%@ page session="true" %>
 <html>
 <head>
-	<title>Marcas</title>
+	<title>Mercados</title>
 	<style type="text/css">
 		.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
 		.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
@@ -14,14 +14,14 @@
 </head>
 <body>
 <h1>
-	Adicionar Marca
+	Adicionar Mercado
 </h1>
 
-<c:url var="addAction" value="/marcas/add" ></c:url>
+<c:url var="addAction" value="/mercados/add" ></c:url>
 
-<form:form action="${addAction}" commandName="marca">
+<form:form action="${addAction}" commandName="mercado">
 <table>
-	<c:if test="${!empty marca.descricao}">
+	<c:if test="${!empty mercado.descricao}">
 	<tr>
 		<td>
 			<form:label path="id">
@@ -46,11 +46,11 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<c:if test="${!empty marca.descricao}">
+			<c:if test="${!empty mercado.descricao}">
 				<input type="submit"
 					value="<spring:message text="Alterar"/>" />
 			</c:if>
-			<c:if test="${empty marca.descricao}">
+			<c:if test="${empty mercado.descricao}">
 				<input type="submit"
 					value="<spring:message text="Adicionar"/>" />
 			</c:if>
@@ -59,10 +59,10 @@
 </table>	
 </form:form>
 <br>
-<button><a href="<c:url value='/produtos' />" >Voltar aos produtos</a></button>
+<button><a href="<c:url value='/compras' />" >Voltar as compras</a></button>
 <br>
-<h3>Lita de marcas</h3>
-<c:if test="${!empty listMarcas}">
+<h3>Lita de mercados</h3>
+<c:if test="${!empty listMercados}">
 	<table class="tg">
 	<tr>
 		<th width="80">ID</th>
@@ -70,12 +70,12 @@
 		<th width="60">Alterar</th>
 		<th width="60">Apagar</th>
 	</tr>
-	<c:forEach items="${listMarcas}" var="marca">
+	<c:forEach items="${listMercados}" var="mercado">
 		<tr>
-			<td>${marca.id}</td>
-			<td>${marca.descricao}</td>
-			<td><a href="<c:url value='/marcas/edit/${marca.id}' />" >Alterar</a></td>
-			<td><a href="<c:url value='/marcas/remove/${marca.id}' />" >Apagar</a></td>
+			<td>${mercado.id}</td>
+			<td>${mercado.descricao}</td>
+			<td><a href="<c:url value='/mercados/edit/${mercado.id}' />" >Alterar</a></td>
+			<td><a href="<c:url value='/mercados/remove/${mercado.id}' />" >Apagar</a></td>
 		</tr>
 	</c:forEach>
 	</table>

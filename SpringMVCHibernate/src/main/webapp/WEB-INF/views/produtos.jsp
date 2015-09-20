@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <html>
 <head>
 	<title>Produtos</title>
@@ -85,30 +85,21 @@
 		</td>
 	</tr>
 	<tr>
-		<td>
-			<form:label path="datavalidade">Validade:</form:label>
-		</td>
-		<td>
-			<c:if test="${!empty produto.nome}">
-				<fmt:formatDate value="${produto.datavalidade}" type="date" pattern="yyyy-MM-dd" var="datavalidade" />
-			</c:if>
-			<form:input type="date" path="datavalidade" value="${datavalidade}" />
-		</td>
-	</tr>
-	<tr>
 		<td colspan="2">
 			<c:if test="${!empty produto.nome}">
 				<input type="submit"
-					value="<spring:message text="Edit Person"/>" />
+					value="<spring:message text="Alterar"/>" />
 			</c:if>
 			<c:if test="${empty produto.nome}">
 				<input type="submit"
-					value="<spring:message text="Add Person"/>" />
+					value="<spring:message text="Adicionar"/>" />
 			</c:if>
 		</td>
 	</tr>
 </table>	
 </form:form>
+<br>
+<button><a href="<c:url value='/compras' />" >Voltar as compras</a></button>
 <br>
 <h3>Lista de produtos</h3>
 <c:if test="${!empty listProdutos}">
@@ -119,7 +110,6 @@
 		<th >Valor</th>
 		<th >Tipo</th>
 		<th >Marca</th>
-		<th >Validade</th>
 		<th width="60">Edit</th>
 		<th width="60">Delete</th>
 	</tr>
@@ -130,8 +120,6 @@
 			<td>${produto.valor}</td>
 			<td>${produto.tipo.descricao}</td>
 			<td>${produto.marca.descricao}</td>
-			<fmt:formatDate value="${produto.datavalidade}" type="date" pattern="yyyy-MM-dd" var="datavalidade" />
-			<td>${datavalidade}</td>
 			<td><a href="<c:url value='/produtos/edit/${produto.id}' />" >Alterar</a></td>
 			<td><a href="<c:url value='/produtos/remove/${produto.id}' />" >Apagar</a></td>
 		</tr>

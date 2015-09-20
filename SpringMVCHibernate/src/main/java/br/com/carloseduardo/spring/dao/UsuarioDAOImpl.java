@@ -2,6 +2,10 @@ package br.com.carloseduardo.spring.dao;
 
 
 
+import java.io.Console;
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -26,6 +30,23 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		Session session = this.sessionFactory.getCurrentSession();		
 		Usuario u = (Usuario) session.load(Usuario.class, new Integer(id));
 		return u;
+	}
+
+	@Override
+	public int loginUsuario(String login, String senha) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query =session.createQuery("from Usuario where login = :login and senha = password(:senha)");
+		System.out.println("Login: " + login + ", Senha: " + senha);
+		query.setParameter("login",login);
+		query.setParameter("senha",senha);
+		List<Usuario> us = (List<Usuario>)query.list();
+		if(us.isEmpty()){
+			return -1;
+		}else
+		{
+			return us.get(0).getId();
+		}
 	}
 
 }

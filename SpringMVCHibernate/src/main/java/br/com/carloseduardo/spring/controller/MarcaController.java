@@ -1,4 +1,4 @@
-package br.com.carloseduardo.spring;
+package br.com.carloseduardo.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

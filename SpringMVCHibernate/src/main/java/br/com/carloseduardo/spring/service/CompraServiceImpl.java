@@ -19,16 +19,16 @@ public class CompraServiceImpl implements CompraService {
 
 	@Override
 	@Transactional
-	public void addCompra(Compra c) {
+	public void addCompra(Compra c, int mercado_id, int usuario_id) {
 		// TODO Auto-generated method stub
-		this.compraDAO.addCompra(c);
+		this.compraDAO.addCompra(c, mercado_id, usuario_id);
 	}
 
 	@Override
 	@Transactional
-	public List<Compra> listCompras() {
+	public List<Compra> listCompras(int usuario_id) {
 		// TODO Auto-generated method stub
-		return this.compraDAO.listCompras();
+		return this.compraDAO.listCompras(usuario_id);
 	}
 
 	@Override
@@ -43,6 +43,12 @@ public class CompraServiceImpl implements CompraService {
 	public void removeCompra(int id) {
 		// TODO Auto-generated method stub
 		this.compraDAO.removeCompra(id);
+	}
+
+	@Override
+	public void updateCompra(Compra c, int mercado_id, int usuario_id) {
+		// TODO Auto-generated method stub
+		this.compraDAO.updateCompra(c, mercado_id, usuario_id);
 	}
 
 	

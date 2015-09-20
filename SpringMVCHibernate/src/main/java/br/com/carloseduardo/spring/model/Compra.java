@@ -1,14 +1,24 @@
 package br.com.carloseduardo.spring.model;
 
+
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.hibernate.annotations.CascadeType;
 
 /**
  * Entity bean with JPA annotations
@@ -18,6 +28,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Compra")
+@XmlRootElement
 public class Compra implements Serializable {
 
 	/**
@@ -30,8 +41,26 @@ public class Compra implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	private String mercado;
+	@ManyToOne
+	@JoinColumn(name="Mercado_id")
+	private Mercado mercado;
 	
+	@ManyToOne
+	@JoinColumn(name="Usuario_id")
+	private Usuario usuario;
+	
+	@OneToMany(mappedBy = "compra", targetEntity = ProdutoCompra.class, fetch = FetchType.LAZY)
+	private List<ProdutoCompra> produtoscompras;
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	
+	@XmlTransient
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	private Date data;
 
 	public int getId() {
@@ -42,11 +71,11 @@ public class Compra implements Serializable {
 		this.id = id;
 	}
 
-	public String getMercado() {
+	public Mercado getMercado() {
 		return mercado;
 	}
 
-	public void setMercado(String mercado) {
+	public void setMercado(Mercado mercado) {
 		this.mercado = mercado;
 	}
 
