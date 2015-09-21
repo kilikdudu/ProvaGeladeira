@@ -34,7 +34,7 @@ public class CompraController {
 	
 	@Autowired(required=true)
 	@Qualifier(value="compraService")
-	public void setMarcaService(CompraService cs){
+	public void setCompraService(CompraService cs){
 		this.compraService = cs;
 	}
 	

@@ -49,14 +49,10 @@ public class Compra implements Serializable {
 	@JoinColumn(name="Usuario_id")
 	private Usuario usuario;
 	
-	@OneToMany(mappedBy = "compra", targetEntity = ProdutoCompra.class, fetch = FetchType.LAZY)
-	private List<ProdutoCompra> produtoscompras;
-	
 	public Usuario getUsuario() {
 		return usuario;
 	}
 	
-	@XmlTransient
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}

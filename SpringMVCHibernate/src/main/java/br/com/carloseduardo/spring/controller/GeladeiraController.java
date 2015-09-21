@@ -126,7 +126,7 @@ public class GeladeiraController {
     }
     
     @RequestMapping("/geladeiras/redirect/{geladeira_id}")
-	public String welcome(@PathVariable("geladeira_id") int geladeira_id, HttpSession session) {
+	public String backCompras(@PathVariable("geladeira_id") int geladeira_id, HttpSession session) {
 		session.setAttribute("geladeira_id", geladeira_id);
 		return "redirect:/compras";
 	}
